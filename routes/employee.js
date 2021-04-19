@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const EmployeeController = require('../controllers/EmployeeController')
-const upload = require('../middleware/upload')
-const authenticate = require('../middleware/authenticate')
+const EmployeeController = require('../app/controllers/EmployeeController')
+const upload = require('../app/middleware/upload')
+const authenticate = require('../app/middleware/authenticate')
 
 router.get('/', authenticate, EmployeeController.index)
 router.post('/show', EmployeeController.show)
