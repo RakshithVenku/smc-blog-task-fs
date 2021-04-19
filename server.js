@@ -8,10 +8,7 @@ app.use(cors())
 
 
 const mongoose = require('mongoose')
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
 
-const EmployeeRoute = require('./routes/employee')
 const AuthRoute = require('./routes/auth')
 
 const CONNECTION_URI= process.env.MONGODB_URI || "mongodb://localhost:27017/testdb"
@@ -26,8 +23,6 @@ db.once('open', () => {
     console.log('Database Connection Established!')
 })
 
-app.use(morgan('dev'))
-app.use('/uploads', express.static('uploads'))
 
 const PORT = process.env.PORT || 3030
 
@@ -36,7 +31,6 @@ app.get("*",(req,res) => {
     res.sendFile(path.join(__dirname + "/client/build/index.html")) 
 }) 
 
-app.use('/api/employee', EmployeeRoute)
 app.use('/api', AuthRoute)
 
 app.listen(PORT, () => {
